@@ -2,16 +2,19 @@
 const inquirer = require('inquirer');
 
 // question and text input answer
-inquirer
-    .prompt([
+const promptUser = () => {
+ return inquirer.prompt([
         {
             type: 'input',
             name: 'name',
             message: "What is your name?"
         }
-    ])
+    ]);
+};
 
-    .then(answers => console.log(answers));
+
+    promptUser().then(answers => console.log(answers));
+
 //receives written html file
 // const fs = require('fs');
 
