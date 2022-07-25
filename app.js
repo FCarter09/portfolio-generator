@@ -1,9 +1,9 @@
 
- //imports written html file
-const fs = require('fs');
+
+const {writeFile, copyFile} = require('./utils/generate-site');
 
 //receives page-template
-const generatePage = require('./page-template');
+const generatePage = require('./src/page-template');
 
 //receives inquirer file
 const inquirer = require('inquirer');
@@ -148,15 +148,29 @@ const promptUser = () => {
     promptUser()
     .then(promptProject)
     .then(portfolioData => {
-        const pageHTML = generatePage(portfolioData);
+        return generatePage(portfolioData);
+    })
 
-    // //writes html to file
-     fs.writeFile('./index.html', pageHTML, err => {
-         if (err) throw new Error (err);
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
 
-    //     console.log('Portfolio complete! Check out index.html to see the output!');
-     });
+    .then(writeFileResponse => {
+        console.log(writeFileResponse);
+        return copyFile();
+    })
+
+    .then(copyFileResponse => {
+        console.log(copyFileResponse);
+    })
+
+    .catch(err => {
+        console.log(err);
     });
+
+
+    
+    
 
 
 
