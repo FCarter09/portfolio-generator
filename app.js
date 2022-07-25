@@ -1,3 +1,10 @@
+
+ //imports written html file
+const fs = require('fs');
+
+//receives page-template
+const generatePage = require('./page-template');
+
 //receives inquirer file
 const inquirer = require('inquirer');
 
@@ -141,22 +148,14 @@ const promptUser = () => {
     promptUser()
     .then(promptProject)
     .then(portfolioData => {
-        console.log(portfolioData);
-        //imports written html file
-        // const fs = require('fs');
+        const pageHTML = generatePage(portfolioData);
 
-        // //receives page-template
-        // const generatePage = require('./src/page-template');
+    // //writes html to file
+     fs.writeFile('./index.html', pageHTML, err => {
+         if (err) throw new Error (err);
 
-        // const pageHTML = generatePage(name, github);
-
-
-        // //writes html to file
-        // fs.writeFile('index.html', generatePage(name, github), err => {
-        //     if (err) throw err;
-
-        //     console.log('Portfolio complete! Check out index.html to see the output!');
-        // });
+    //     console.log('Portfolio complete! Check out index.html to see the output!');
+     });
     });
 
 
