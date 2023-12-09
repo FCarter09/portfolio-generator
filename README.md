@@ -1,7 +1,6 @@
 # portfolio-generator
 
 ##Description
-
 Personal Portfolio
 
 
